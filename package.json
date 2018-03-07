@@ -1,7 +1,7 @@
 {
   "name": "dojo-clock",
   "scripts": {
-    "test": "mocha ./**/*.test.js --ui exports --timeout 4000 --recursive --reporter spec --check-leaks"
+    "test": "mocha clock.test.js --ui exports --timeout 4000 --bail --reporter spec --check-leaks"
   },
   "dependencies": {
     "chai": "^4.1.2",
