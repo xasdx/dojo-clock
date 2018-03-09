@@ -7,15 +7,18 @@ module.exports = {
     "returns the actual time in the format: 'hh:mm:ss'": () => {
       let clock = new Clock()
       expect(clock.getTime()).to.match(/\d\d:\d\d:\d\d/)
+      clock.cleanUp()
     },
     "allows setting an initial time": () => {
       let clock = new Clock("13:37:42")
       expect(clock.getTime()).to.equal("13:37:42")
+      clock.cleanUp()
     },
     "updates its state in real time": done => {
       let clock = new Clock("13:37:42")
       setTimeout(() => {
         expect(clock.getTime()).to.equal("13:37:44")
+        clock.cleanUp()
         done()
       }, 2250)
     },
@@ -23,6 +26,7 @@ module.exports = {
       let clock = new Clock("13:78:69")
       setTimeout(() => {
         expect(clock.getTime()).to.equal("13:79:01")
+        clock.cleanUp()
         done()
       }, 2250)
     },
@@ -35,6 +39,7 @@ module.exports = {
       })
       setTimeout(() => {
         expect(timesOfObservation).to.equal(3)
+        clock.cleanUp()
         done()
       }, 3250)
     }
