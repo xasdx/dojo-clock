@@ -26,4 +26,5 @@ Node.js [installed](https://www.npmjs.com/get-npm?utm_source=house&utm_medium=ho
 ## What You'll Learn
 
 [JavaScript(ES6)](https://www.toptal.com/javascript/javascript-es6-cheat-sheet) basic syntax
+
 [Observer pattern](https://scotch.io/bar-talk/4-javascript-design-patterns-you-should-know#toc-observer-design-pattern)
