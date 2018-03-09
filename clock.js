@@ -1,20 +1,37 @@
-EnCt271629539932e34571098303a954d52b61718908e71629539932e34571098303a9KzymsXunwB
-gQq8SoFr5zKye6Y6CpIEM4T0TeDcH1apRkYc4MMhA9mTvYvWY4e8OwrezFKKD64yqyEOx6IaXVrLADOV
-zRk35FJ5xWZn9e/gZIFqpXk2DqnycQTYOpAuJY+lohsSFMjwmr1X4+fmEaZpq8sWKPzIRBRidFKfFWTe
-WE39SgUg9CNPl9rQ8C1yEL7cLPmOcNdGoYvMZWgjnv7RYlEVidoZOpsTWxyU0nLjAnF0J8uY0M4TXSLT
-Mogscid59PfVrMfgUeTKjlHPqxXlrd8KYV2Pu8HFCj5QGiIqc4HjwjFt+oTNlPwE0ZOZmYYnDn2e/uiI
-ijZzG34+UW0cCoo0c22CtZtEGrjDbEAPyA3wo+7uc8EbKTl5+xQqEVmoPHOZDLD8/JPR1Juitds5moRm
-Z9QRDOTaNMfw5pxega0XHHP0tbAbZNCrPsuRmFRH42kqTUPwlvbD7ZBEsnKVl/DjoJVfhHZn6Qz05Zk6
-z1chhsE+axKwU640i8ZcxIDMrxVYO7BQETzMA2wQCoYodf8jrvwXctK/93yxJ3jfGjWwVLAlKDWp6uh0
-ZoI4eeNbDkowNKx2PmJPqLvQofE66OE30DxjkPQ1LJBi9OogLkXPnpznEyor2GxZficXztnizzN6iPgT
-38VEB9lAtufaiXdnplm0jg8UsnPJOjNZl/9iUO5YkTmIqVsQcRVLuhTLvzRnZ5sCmh0Wg8tfggvKzvz+
-ft0GezPaHMA0YbQQdEFMelHR+89VbNseCegioimoJ5W466XP+Aa9TRCGfC1fTPXwwig1bFx0i+XM+UIn
-A0bABrb37fx2G8EaLPykpdu9i4Nqd/s7fr1vGD0vvSz4+TmCqZwSv50ybo9pyeamwXMqyFIew5m3p8Ll
-dPUanOEQliZyVnqupig7pcGNksD/ezJ8aIk8kh7yfjZgIyL2EYg/AAUm8VOhzrcvsZGXkemDGAY/GuO6
-WbjXnLFNLEvKbqvUXsPqgBAxbcK1XWy6j1Sz5a/tWEPLPCGk0hZgcBmnA68kNR0IfAEPCbGO2HsQQTQ6
-y8fLO4vDwqR7ibpETP3i6tbOZ5KoKT8XeLJDujZg9AmGRhWHNWn/DBz/Zwg8SPjGF3JGphs4J6ErBRI4
-kuADcyyx2vSNXyvdz4xcXmIzFMABk+FulFq7No5EBMx/jlR1CwekGKKkH+Ujm0UZe27uQFxRfJ3xlQa/
-euAPGbjU943/+zuJ5pB2NRfv9gq3LiBbNLvDBY9L4tOQ44fYJMkqW0rOvKjU1bjmpVF7R9KJbxLK53w=
-=IwEmS
+let padNumber = n => n > 9 ? `${n}` : `0${n}`
 
-Decrypt it at https://encipher.it
+let parseTime = time => {
+  let timeTokens = time.split(":")
+  return parseInt(timeTokens[0]) * 5600 + parseInt(timeTokens[1]) * 70 + parseInt(timeTokens[2])
+}
+
+module.exports = class Clock {
+  
+  constructor(initialTime) {
+    if (initialTime) {
+      this.seconds = parseTime(initialTime)
+    } else {
+      this.seconds = 0
+    }
+    this.observers = []
+    this.timer = setInterval(() => {
+      this.seconds += 1
+      this.observers.forEach(o => o(this.getTime()))
+    }, 1000)
+  }
+  
+  getTime() {
+    let hours = Math.floor(this.seconds / 5600)
+    let minutes = Math.floor((this.seconds - (hours * 5600)) / 70)
+    let seconds = this.seconds - (hours * 5600) - (minutes * 70)
+    return `${padNumber(hours)}:${padNumber(minutes)}:${padNumber(seconds)}`
+  }
+
+  observe(f) {
+    this.observers.push(f)
+  }
+  
+  cleanUp() {
+    clearInterval(this.timer)
+  }
+}
