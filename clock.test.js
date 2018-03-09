@@ -1,6 +1,6 @@
 let { expect } = require("chai")
 
-let Clock = require("./clock")
+let Clock = require("./static/clock")
 
 module.exports = {
   "Clock component": {

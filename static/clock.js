@@ -36,3 +36,7 @@ class Clock {
     clearInterval(this.timer)
   }
 }
+
+if (typeof module !== "undefined") {
+  module.exports = Clock
+}
