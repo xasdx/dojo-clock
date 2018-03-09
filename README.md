@@ -10,7 +10,7 @@ Node.js [installed](https://www.npmjs.com/get-npm) with npm on your system.
 
 ## Todo
 
-1. Fork this [repo](https://github.com/xasdx/dojo-clock)!
+1. Clone this [repository](https://github.com/xasdx/dojo-clock)
 2. Configure proxy settings for npm:
 - `npm config set proxy http://localhost:5555`
 - `npm config set https-proxy http://localhost:5555`
