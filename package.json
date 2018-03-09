@@ -2,7 +2,7 @@
   "name": "dojo-clock",
   "scripts": {
     "start": "node index.js",
-    "test": "mocha test.js --ui exports --timeout 4000 --bail --reporter spec --check-leaks"
+    "test": "mocha html.test.js --ui exports --timeout 4000 --bail --reporter spec --check-leaks"
   },
   "dependencies": {
     "chai": "^4.1.2",
