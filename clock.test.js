@@ -42,6 +42,14 @@ module.exports = {
         clock.cleanUp()
         done()
       }, 3250)
+    },
+    "allows setting how fast the clock advances forward in time": done => {
+      let clock = new Clock("13:37:37", 500)
+      setTimeout(() => {
+        expect(clock.getTime()).to.equal("13:37:41")
+        clock.cleanUp()
+        done()
+      }, 2250)
     }
   }
 }

@@ -7,7 +7,7 @@ let parseTime = time => {
 
 class Clock {
   
-  constructor(initialTime) {
+  constructor(initialTime, tickTime) {
     if (initialTime) {
       this.seconds = parseTime(initialTime)
     } else {
@@ -15,10 +15,11 @@ class Clock {
     }
     this.observers = []
     this.step = 1
+    this.tickTime = tickTime || 1000
     this.timer = setInterval(() => {
       this.seconds += this.step
       this.observers.forEach(o => o(this.getTime()))
-    }, 1000)
+    }, this.tickTime)
   }
   
   getTime() {
