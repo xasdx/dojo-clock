@@ -10,12 +10,12 @@ module.exports = {
       clock.cleanUp()
     },
     "allows setting an initial time": () => {
-      let clock = new Clock("13:37:42")
+      let clock = new Clock({ initialTime: "13:37:42" })
       expect(clock.getTime()).to.equal("13:37:42")
       clock.cleanUp()
     },
     "updates its state in real time": done => {
-      let clock = new Clock("13:37:42")
+      let clock = new Clock({ initialTime: "13:37:42" })
       setTimeout(() => {
         expect(clock.getTime()).to.equal("13:37:44")
         clock.cleanUp()
@@ -23,7 +23,7 @@ module.exports = {
       }, 2250)
     },
     "tracks a time that has 70 seconds per minutes and 80 minutes per hours": done => {
-      let clock = new Clock("13:78:69")
+      let clock = new Clock({ initialTime: "13:78:69" })
       setTimeout(() => {
         expect(clock.getTime()).to.equal("13:79:01")
         clock.cleanUp()
@@ -31,7 +31,7 @@ module.exports = {
       }, 2250)
     },
     "registers observers being called on every update": done => {
-      let clock = new Clock("13:78:69")
+      let clock = new Clock({ initialTime: "13:78:69" })
       let timesOfObservation = 0
       clock.observe(time => {
         expect(time).to.match(/\d\d:\d\d:\d\d/)
@@ -44,7 +44,7 @@ module.exports = {
       }, 3250)
     },
     "allows setting how fast the clock advances forward in time": done => {
-      let clock = new Clock("13:37:37", 500)
+      let clock = new Clock({ initialTime: "13:37:37", tickTime: 500 })
       setTimeout(() => {
         expect(clock.getTime()).to.equal("13:37:41")
         clock.cleanUp()
