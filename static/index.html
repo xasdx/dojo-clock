@@ -6,7 +6,7 @@
   </body>
   <script>
   
-    let clock = new Clock("05:12:69")
+    let clock = new Clock({ initialTime: "05:12:69" })
     
     clock.observe(time => {
       document.getElementById("clock").innerHTML = time
